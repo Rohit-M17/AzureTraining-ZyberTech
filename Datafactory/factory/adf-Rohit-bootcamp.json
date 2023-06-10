@@ -1,0 +1,9 @@
+{
+	"name": "adf-Rohit-bootcamp",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "36444828-0cc4-4e45-b7da-3c9a1457eb29",
+		"tenantId": "ad0b7821-86ee-46c4-841a-be99da55a98e"
+	}
+}
