@@ -55,6 +55,47 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "EmpSalId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "EmpId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Month",
+						"type": "varchar"
+					},
+					{
+						"name": "Salary",
+						"type": "float",
+						"precision": 15
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "tblEmployee"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -101,44 +142,49 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"name": "[concat(parameters('factoryName'), '/Employee')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
+					"referenceName": "AzureDataLakeStorage1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "AzureSqlTable",
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "tblEmployee.csv",
+						"folderPath": "Raw",
+						"fileSystem": "bootcamp"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
 				"schema": [
 					{
-						"name": "EmpSalId",
-						"type": "int",
-						"precision": 10
-					},
-					{
 						"name": "EmpId",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "Month",
-						"type": "varchar"
+						"name": "Name",
+						"type": "String"
 					},
 					{
-						"name": "Salary",
-						"type": "float",
-						"precision": 15
+						"name": "Address",
+						"type": "String"
+					},
+					{
+						"name": "Mobile ",
+						"type": "String"
 					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tblEmpSalary"
-				}
+				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		},
 		{
@@ -183,7 +229,7 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "EmpId ",
+											"name": "EmpId",
 											"type": "String",
 											"physicalType": "String"
 										},
@@ -195,26 +241,38 @@
 									},
 									{
 										"source": {
-											"name": "Month",
+											"name": "Name",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Month",
+											"name": "Name",
 											"type": "String",
 											"physicalType": "varchar"
 										}
 									},
 									{
 										"source": {
-											"name": "Salary ",
+											"name": "Address",
 											"type": "String",
 											"physicalType": "String"
 										},
 										"sink": {
-											"name": "Salary",
-											"type": "Double",
-											"physicalType": "float"
+											"name": "Address",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Mobile ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Mobile",
+											"type": "String",
+											"physicalType": "varchar"
 										}
 									}
 								],
@@ -227,7 +285,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "DelimitedText1",
+								"referenceName": "Employee",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -374,8 +432,9 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
+				"[concat(variables('factoryId'), '/datasets/Employee')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
 			]
 		}
