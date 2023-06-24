@@ -38,7 +38,7 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "EmpId ",
+									"name": "EmpId",
 									"type": "String",
 									"physicalType": "String"
 								},
@@ -49,11 +49,6 @@
 								}
 							},
 							{
-								"source": {
-									"name": "Month",
-									"type": "String",
-									"physicalType": "String"
-								},
 								"sink": {
 									"name": "Month",
 									"type": "String",
@@ -61,11 +56,6 @@
 								}
 							},
 							{
-								"source": {
-									"name": "Salary ",
-									"type": "String",
-									"physicalType": "String"
-								},
 								"sink": {
 									"name": "Salary",
 									"type": "Double",
@@ -82,7 +72,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "Employee",
 						"type": "DatasetReference"
 					}
 				],
