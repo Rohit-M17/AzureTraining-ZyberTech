@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "tblEmployee.csv",
+				"fileName": "tblSalary.csv",
 				"folderPath": "Raw",
 				"fileSystem": "bootcamp"
 			},
