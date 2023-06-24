@@ -38,9 +38,9 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "EmpId",
-									"type": "Int32",
-									"physicalType": "int"
+									"name": "EmpId ",
+									"type": "String",
+									"physicalType": "String"
 								},
 								"sink": {
 									"name": "EmpId",
@@ -50,38 +50,26 @@
 							},
 							{
 								"source": {
-									"name": "Name",
+									"name": "Month",
 									"type": "String",
-									"physicalType": "varchar"
+									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Name",
+									"name": "Month",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Address",
+									"name": "Salary ",
 									"type": "String",
-									"physicalType": "varchar"
+									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Address",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Mobile",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "Mobile",
-									"type": "String",
-									"physicalType": "varchar"
+									"name": "Salary",
+									"type": "Double",
+									"physicalType": "float"
 								}
 							}
 						],
