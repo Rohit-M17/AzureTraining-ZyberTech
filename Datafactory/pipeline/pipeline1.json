@@ -185,7 +185,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "Salary",
 						"type": "DatasetReference"
 					}
 				],
