@@ -675,6 +675,47 @@
 				"[concat(variables('factoryId'), '/datasets/Salary')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PizzaSalesTrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Pizza File Copy",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2023-07-08T16:23:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								8
+							],
+							"weekDays": [
+								"Friday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Pizza File Copy')]"
+			]
 		}
 	]
 }
